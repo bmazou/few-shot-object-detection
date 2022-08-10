@@ -481,7 +481,18 @@ def _get_custom_airplane_instances_meta():
     
     return ret
 
+CUSTOM_ROD_ALL_CATEGORIES = ['rod']
+CUSTOM_ROD_BASE_CATEGORIES = []
+CUSTOM_ROD_NOVEL_CATEGORIES = ['rod']
 
+def _get_custom_rod_instances_meta():
+    ret = {
+        "thing_classes": CUSTOM_ROD_ALL_CATEGORIES,
+        "base_classes": CUSTOM_ROD_BASE_CATEGORIES, 
+        "novel_classes": CUSTOM_ROD_NOVEL_CATEGORIES
+    }
+    
+    return ret
 
 
 def _get_builtin_metadata(dataset_name):
@@ -499,4 +510,6 @@ def _get_builtin_metadata(dataset_name):
         return _get_custom_bear_instances_meta()
     elif dataset_name == "custom_airplane":
         return _get_custom_airplane_instances_meta()
+    elif dataset_name == "custom_rod":
+        return _get_custom_rod_instances_meta()
     raise KeyError("No built-in metadata for dataset {}".format(dataset_name))

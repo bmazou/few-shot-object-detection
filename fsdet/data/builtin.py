@@ -306,6 +306,26 @@ def register_all_custom_airplane():
     }
     for dataset_name, classes in datasets.items():
         register_custom_airplane(dataset_name, classes, metadata)
+        
+        
+def register_all_custom_rod():
+    thing_classes = ['rod']
+    base_classes = []
+    novel_classes = ['rod'] 
+
+    metadata = {
+        "thing_classes": thing_classes,
+        "base_classes": base_classes,
+        "novel_classes": novel_classes
+    }
+    
+    datasets = {
+        'custom_rod_all': metadata["thing_classes"],
+        'custom_rod_base': metadata["base_classes"],
+        'custom_rod_novel': metadata["novel_classes"],
+    }
+    for dataset_name, classes in datasets.items():
+        register_custom_airplane(dataset_name, classes, metadata)
 
 # Register them all under "./datasets"
 register_all_coco()
@@ -313,3 +333,4 @@ register_all_lvis()
 register_all_pascal_voc()
 register_all_custom_bear()
 register_all_custom_airplane()
+register_all_custom_rod()
