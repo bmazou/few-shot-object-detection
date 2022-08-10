@@ -19,7 +19,7 @@ metadata = {
 }
 
 def custom_rod_loader(name, load_classes):
-    json_file = 'datasets/custom-rod/rod.json'
+    json_file = 'datasets/Custom-Rod/rod.json'
     with contextlib.redirect_stdout(io.StringIO()):
         coco_api = COCO(json_file)
     img_ids = sorted(list(coco_api.imgs.keys()))
@@ -29,7 +29,7 @@ def custom_rod_loader(name, load_classes):
 
     imgs_anns = list(zip(imgs, anns))
     ann_keys = ["iscrowd", "bbox", "category_id"]
-    image_root = 'datasets/custom-rod'
+    image_root = 'datasets/Custom-Rod'
     dataset_dicts = []
 
     for (img_dict, anno_dict_list) in imgs_anns:

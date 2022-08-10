@@ -24,6 +24,8 @@ from .meta_lvis import register_meta_lvis
 from .meta_pascal_voc import register_meta_pascal_voc
 from .meta_custom_bear import register_custom_bear
 from .meta_custom_airplane import register_custom_airplane
+from .meta_custom_rod import register_custom_rod
+
 
 # ==== Predefined datasets and splits for COCO ==========
 
@@ -325,7 +327,7 @@ def register_all_custom_rod():
         'custom_rod_novel': metadata["novel_classes"],
     }
     for dataset_name, classes in datasets.items():
-        register_custom_airplane(dataset_name, classes, metadata)
+        register_custom_rod(dataset_name, classes, metadata)
 
 # Register them all under "./datasets"
 register_all_coco()
