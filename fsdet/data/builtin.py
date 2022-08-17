@@ -14,12 +14,18 @@ LVIS have been handled by the builtin datasets in detectron2.
 import os
 
 from detectron2.data import MetadataCatalog
-from detectron2.data.datasets.lvis import register_lvis_instances
+from detectron2.data.datasets.lvis import (
+    register_lvis_instances,
+)
 
 from .builtin_meta import _get_builtin_metadata
 from .meta_coco import register_meta_coco
 from .meta_lvis import register_meta_lvis
 from .meta_pascal_voc import register_meta_pascal_voc
+from .meta_custom_bear import register_custom_bear
+from .meta_custom_airplane import register_custom_airplane
+from .meta_custom_rod import register_custom_rod
+
 
 # ==== Predefined datasets and splits for COCO ==========
 
@@ -263,7 +269,70 @@ def register_all_pascal_voc(root="datasets"):
         MetadataCatalog.get(name).evaluator_type = "pascal_voc"
 
 
+
+def register_all_custom_bear():
+    thing_classes = ['bear', 'car', 'cat', 'dog']
+    base_classes = ['car', 'cat', 'dog']
+    novel_classes = ['bear'] 
+
+    metadata = {
+        "thing_classes": thing_classes,
+        "base_classes": base_classes,
+        "novel_classes": novel_classes
+    }
+    
+    datasets = {
+        'custom_bear_all': metadata["thing_classes"],
+        'custom_bear_base': metadata["base_classes"],
+        'custom_bear_novel': metadata["novel_classes"],
+    }
+    for dataset_name, classes in datasets.items():
+        register_custom_bear(dataset_name, classes, metadata)
+        
+        
+def register_all_custom_airplane():
+    thing_classes = ['airplane', 'car', 'cat', 'dog']
+    base_classes = ['car', 'cat', 'dog']
+    novel_classes = ['airplane'] 
+
+    metadata = {
+        "thing_classes": thing_classes,
+        "base_classes": base_classes,
+        "novel_classes": novel_classes
+    }
+    
+    datasets = {
+        'custom_airplane_all': metadata["thing_classes"],
+        'custom_airplane_base': metadata["base_classes"],
+        'custom_airplane_novel': metadata["novel_classes"],
+    }
+    for dataset_name, classes in datasets.items():
+        register_custom_airplane(dataset_name, classes, metadata)
+        
+        
+def register_all_custom_rod():
+    thing_classes = ['rod']
+    base_classes = []
+    novel_classes = ['rod'] 
+    
+    metadata = {
+        "thing_classes": thing_classes,
+        "base_classes": base_classes,
+        "novel_classes": novel_classes
+    }
+    
+    datasets = {
+        'custom_rod_all': metadata["thing_classes"],
+        'custom_rod_base': metadata["base_classes"],
+        'custom_rod_novel': metadata["novel_classes"],
+    }
+    for dataset_name, classes in datasets.items():
+        register_custom_rod(dataset_name, classes, metadata)
+
 # Register them all under "./datasets"
 register_all_coco()
 register_all_lvis()
 register_all_pascal_voc()
+register_all_custom_bear()
+register_all_custom_airplane()
+register_all_custom_rod()
