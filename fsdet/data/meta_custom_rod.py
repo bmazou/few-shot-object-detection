@@ -73,7 +73,7 @@ def get_annotations_of_object(rel_path, obj, thing_classes, shots):
         return data
 
     else:
-        json_file = 'datasets/Custom-Rod/train.json'
+        json_file = 'datasets/Custom-Rod/train/train.json'
         with contextlib.redirect_stdout(io.StringIO()):
             coco_api = COCO(json_file)
         img_ids = sorted(list(coco_api.imgs.keys()))
