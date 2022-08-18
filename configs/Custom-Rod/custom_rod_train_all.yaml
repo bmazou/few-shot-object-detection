@@ -13,7 +13,6 @@ MODEL:
   PROPOSAL_GENERATOR:
     FREEZE: True
 DATASETS:
-# Implicitně se tady zatím bude brát, že ..._all trénuje s 10-shot
   TRAIN: ('custom_rod_all',)
   TEST: ('custom_rod_all',)
 SOLVER:
