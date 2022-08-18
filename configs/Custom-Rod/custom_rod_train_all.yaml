@@ -22,5 +22,5 @@ SOLVER:
   STEPS: (14400,)
   MAX_ITER: 16000
   CHECKPOINT_PERIOD: 1000
-  WARMUP_ITERS: 10
-OUTPUT_DIR: "/content/gdrive/MyDrive/fsdet-v/Custom-Rod"
+  WARMUP_ITERS: 50
+OUTPUT_DIR: "/content/gdrive/MyDrive/fsdet-v/Custom-Rod/rod-only-foreground"
