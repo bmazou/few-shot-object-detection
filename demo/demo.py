@@ -12,6 +12,7 @@ from detectron2.utils.logger import setup_logger
 from demo.predictor import VisualizationDemo
 from fsdet.config import get_cfg
 
+
 # constants
 WINDOW_NAME = "COCO detections"
 
@@ -89,6 +90,12 @@ if __name__ == "__main__":
             img = read_image(path, format="BGR")
             start_time = time.time()
             predictions, visualized_output = demo.run_on_image(img)
+
+            # Output annotations into txt file
+            base_file_name = os.path.basename(os.path.normpath(path)).split('.')[0]
+            with open(f'{args.output}{base_file_name}.txt', 'w') as f:
+                print(predictions, file=f)
+            
             logger.info(
                 "{}: {} in {:.2f}s".format(
                     path,
