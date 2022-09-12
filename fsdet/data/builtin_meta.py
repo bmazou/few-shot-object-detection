@@ -482,8 +482,8 @@ def _get_custom_airplane_instances_meta():
     return ret
 
 CUSTOM_ROD_ALL_CATEGORIES = ['rod']
-CUSTOM_ROD_BASE_CATEGORIES = []
-CUSTOM_ROD_NOVEL_CATEGORIES = ['rod']
+CUSTOM_ROD_BASE_CATEGORIES = ['rod']
+CUSTOM_ROD_NOVEL_CATEGORIES = [] 
 
 def _get_custom_rod_instances_meta():
     ret = {

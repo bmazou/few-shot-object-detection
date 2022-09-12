@@ -1,6 +1,7 @@
 import contextlib
 import io
 import os
+from PIL import Image
 
 import numpy as np
 from detectron2.data import DatasetCatalog, MetadataCatalog
@@ -9,8 +10,8 @@ from fvcore.common.file_io import PathManager
 from pycocotools.coco import COCO
 
 thing_classes = ['rod']
-base_classes = []
-novel_classes = ['rod'] 
+base_classes = ['rod']
+novel_classes = [] 
 
 metadata = {
     "thing_classes": thing_classes,
@@ -18,8 +19,9 @@ metadata = {
     "novel_classes": novel_classes
 }
 
-def custom_rod_loader(name, load_classes):
-    json_file = 'datasets/Custom-Rod/rod.json'
+
+def get_rod_annotations():
+    json_file = 'datasets/Custom-Rod/train/train.json'
     with contextlib.redirect_stdout(io.StringIO()):
         coco_api = COCO(json_file)
     img_ids = sorted(list(coco_api.imgs.keys()))
@@ -29,7 +31,7 @@ def custom_rod_loader(name, load_classes):
 
     imgs_anns = list(zip(imgs, anns))
     ann_keys = ["iscrowd", "bbox", "category_id"]
-    image_root = 'datasets/Custom-Rod'
+    image_root = 'datasets/Custom-Rod/train'
     dataset_dicts = []
 
     for (img_dict, anno_dict_list) in imgs_anns:
@@ -56,13 +58,15 @@ def custom_rod_loader(name, load_classes):
 
     return dataset_dicts
 
+def custom_rod_loader():
+    return get_rod_annotations()
+        
+
 def register_custom_rod(name, thing_classes, metadata):
     # register dataset (step 1)
     DatasetCatalog.register(
         name, # name of dataset, this will be used in the config file
-        lambda: custom_rod_loader( # this calls your dataset loader to get the data
-            name, thing_classes, # inputs to your dataset loader
-        ),
+        lambda: custom_rod_loader() # this calls your dataset loader to get the data
     )
 
     # register meta information (step 2)

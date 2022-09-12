@@ -312,9 +312,9 @@ def register_all_custom_airplane():
         
 def register_all_custom_rod():
     thing_classes = ['rod']
-    base_classes = []
-    novel_classes = ['rod'] 
-
+    base_classes = ['rod']
+    novel_classes = [] 
+    
     metadata = {
         "thing_classes": thing_classes,
         "base_classes": base_classes,
